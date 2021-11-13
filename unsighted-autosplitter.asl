@@ -167,6 +167,7 @@ init
 		"EagleBossDefeated",
 		"FactoryBossDefeated",
 		"ChurchCrab",
+		"CraftedMeteorWeapon",
 		"GameComplete"
 	};
 	vars.playerItemSettings = new List<string>()
@@ -194,7 +195,6 @@ init
 		"FireStar",
 		"IceStar",
 		"ThunderStar",
-		"MeteorAxe",
 		"JumpBoots",
 		"Spinner",
 		"Hookshot1",
@@ -688,7 +688,7 @@ start
 		vars.dataSettingsUsed = new Dictionary<string, bool>();
 		foreach(string setting in vars.playerDataSettings)
 		{
-			if(!vars.playerDataSettings.Contains(setting))
+			if(!vars.dataSettingsUsed.ContainsKey(setting))
 			{
 				vars.dataSettingsUsed.Add(setting,false);
 			}
@@ -697,7 +697,7 @@ start
 		vars.itemSettingsUsed = new Dictionary<string, bool>();
 		foreach(string setting in vars.playerItemSettings)
 		{
-			if(!vars.playerItemSettings.Contains(setting))
+			if(!vars.itemSettingsUsed.ContainsKey(setting))
 			{
 				vars.itemSettingsUsed.Add(setting,false);
 			}
