@@ -10,7 +10,7 @@ update
 }
 isLoading
 {
-	return (vars.loading == 1);
+	return (vars.loading.Current == 1);
 }
 start
 {
