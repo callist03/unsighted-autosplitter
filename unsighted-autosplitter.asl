@@ -11,7 +11,7 @@ startup
 	settings.Add("GardenBossDefeated",false,"Asana Defeated","BossesCanSplit");
 	settings.Add("MuseumBossDefeated",false,"Luna Defeated","BossesCanSplit");
 	settings.Add("AquariumBossDefeated",false,"Maria Defeated","BossesCanSplit");
-	settings.Add("EagleBossDefeated",false,"Sol Defeated","BossesCanSplit");
+	settings.Add("AfterEagleBossCutscene",false,"Sol Defeated","BossesCanSplit");
 	settings.Add("FactoryBossDefeated",false,"Nova Defeated","BossesCanSplit");
 	settings.Add("GrimReaperDefeated",false,"M Defeated","BossesCanSplit");
 	settings.Add("ChurchCrab",false,"Tomb Guardian Defeated","BossesCanSplit");
@@ -164,7 +164,7 @@ init
 		"MuseumBossDefeated",
 		"AquariumBossDefeated",
 		"AquariumCrab",
-		"EagleBossDefeated",
+		"AfterEagleBossCutscene",
 		"FactoryBossDefeated",
 		"ChurchCrab",
 		"CraftedMeteorWeapon",
@@ -391,6 +391,7 @@ update
 			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
 			var dataString = memory.ReadString(ptr, 2*dataStringLength.Current);
 			vars.dataStrings.Add(dataString);
+			//print(dataString);
 		}
 	}
 	
@@ -679,7 +680,6 @@ start
 				vars.dataSettingsUsed.Add(setting,false);
 			}
 		}
-
 		vars.itemSettingsUsed = new Dictionary<string, bool>();
 		foreach(string setting in vars.playerItemSettings)
 		{
@@ -703,7 +703,7 @@ split
 		{
 			checkOther = "DowntownMiniBossDefeated";
 		}
-		else if(kvp.Key == "EagleBossDefeated" && settings[kvp.Key])
+		else if(kvp.Key == "AfterEagleBossCutscene" && settings[kvp.Key])
 		{
 			checkOther = "HighwayBossDefeated";
 		}
