@@ -247,8 +247,8 @@ init
 		"VigorChip",
 		"WalletChip"
 	};
-	//loadedSlot and playerData and dataStringSize use GlobalGameManager instance as a base. For updates, this can be found in memory under SaveSlotButton:OnClick+22
-	vars.loadedSlot = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x30));
+	//loadedSlot and playerData and dataStringSize use GlobalGameData instance as a base. For updates, this can be found in memory under SaveSlotButton:OnClick+22
+	vars.loadedSlot = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x30));
 	vars.loadedSlot.Update(game);
 
 	vars.loading = new MemoryWatcher<int>(new DeepPointer("UnityPlayer.dll", 0x015B4DA8,0x120,0x80,0x0,0x830));
@@ -257,102 +257,102 @@ init
 
 	vars.playerData = new MemoryWatcherList
 	{
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF0)){Name="timeOfDayPasses"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF4)){Name="chipSlots"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF8)){Name="museumLightsOn"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF9)){Name="lavaOn"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x108)){Name="totalDeaths"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x10C)){Name="parryChallengeRecord"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF0)){Name="timeOfDayPasses"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF4)){Name="chipSlots"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF8)){Name="museumLightsOn"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF9)){Name="lavaOn"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x108)){Name="totalDeaths"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x10C)){Name="parryChallengeRecord"},
 		//0 = Medium, 1 = Easy, 2 = Hard
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x110)){Name="difficulty"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x110)){Name="difficulty"},
 		//0 = Regular, 1 = NGPlus, 2 = NGExtra
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x114)){Name="gameMode"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x114)){Name="gameMode"},
 		//0 = MainStory, 1 = Dungeon, 2 = BossRush
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x118)){Name="gameType"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11C)){Name="invencibilityAssist"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11D)){Name="staminaAssist"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11E)){Name="timeAssist"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11F)){Name="combatAssist"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x120)){Name="currentDungeonRoom"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x124)){Name="currentDungeonArea"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x128)){Name="bossRushProgress"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12C)){Name="permaDeath"},
-		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12D)){Name="equipItemsAutomatically"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x130)){Name="numberOfPerfectCatches"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x134)){Name="numberOfTreasureDig"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x138)){Name="numberOfRareTreasuresDig"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x13C)){Name="amountGivenToGrimReaper"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x140)){Name="meteorDustBought"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x144)){Name="keyBought"},
-		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x148)){Name="previousFileNumberNGPlus"}
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x118)){Name="gameType"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11C)){Name="invencibilityAssist"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11D)){Name="staminaAssist"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11E)){Name="timeAssist"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11F)){Name="combatAssist"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x120)){Name="currentDungeonRoom"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x124)){Name="currentDungeonArea"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x128)){Name="bossRushProgress"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12C)){Name="permaDeath"},
+		new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12D)){Name="equipItemsAutomatically"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x130)){Name="numberOfPerfectCatches"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x134)){Name="numberOfTreasureDig"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x138)){Name="numberOfRareTreasuresDig"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x13C)){Name="amountGivenToGrimReaper"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x140)){Name="meteorDustBought"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x144)){Name="keyBought"},
+		new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x148)){Name="previousFileNumberNGPlus"}
 	};
 
 	vars.wasLoading = false;
 
 	vars.dataStrings = new List<string>();
-	vars.dataStringsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x18));
+	vars.dataStringsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x18));
 	vars.dataStringsSize.Update(game);
 
 	for(int i = 0; i < vars.dataStringsSize.Current; i++)
 	{
 		IntPtr ptr = IntPtr.Zero;
-		var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
+		var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
 		dataStringLength.Update(game);
-		new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
+		new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
 		var dataString = memory.ReadString(ptr, 2*dataStringLength.Current);
 		vars.dataStrings.Add(dataString);
 	}
 	
 	vars.playerWeapons = new List<string>();
-	vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
+	vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
 	vars.playerWeaponsSize.Update(game);
 
 	for(int i = 0; i < vars.playerWeaponsSize.Current; i++)
 	{
 		IntPtr ptr = IntPtr.Zero;
-		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
+		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
 		itemNameLength.Update(game);
-		new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+		new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 		var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 		vars.playerWeapons.Add(itemName);
 	}
 	
 	vars.playerItems = new List<string>();
-	vars.playerArmorsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x18));
+	vars.playerArmorsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x18));
 	vars.playerArmorsSize.Update(game);
 
 	for(int i = 0; i < vars.playerArmorsSize.Current; i++)
 	{
 		IntPtr ptr = IntPtr.Zero;
-		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
+		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
 		itemNameLength.Update(game);
-		new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+		new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 		var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 		vars.playerItems.Add(itemName);
 	}
 
-	vars.playerItemsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x18));
+	vars.playerItemsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x18));
 	vars.playerItemsSize.Update(game);
 
 	for(int i = 0; i < vars.playerItemsSize.Current; i++)
 	{
 		IntPtr ptr = IntPtr.Zero;
-		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
+		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
 		itemNameLength.Update(game);
-		new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+		new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 		var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 		vars.playerItems.Add(itemName);
 	}
 
-	vars.playerChipsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x18));
+	vars.playerChipsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x18));
 	vars.playerChipsSize.Update(game);
 
 	for(int i = 0; i < vars.playerChipsSize.Current; i++)
 	{
 		IntPtr ptr = IntPtr.Zero;
-		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
+		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
 		itemNameLength.Update(game);
-		new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+		new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 		var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 		vars.playerItems.Add(itemName);
 	}
@@ -386,26 +386,25 @@ update
 		for(int i = vars.dataStringsSize.Old; i < vars.dataStringsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
+			var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
 			dataStringLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
 			var dataString = memory.ReadString(ptr, 2*dataStringLength.Current);
 			vars.dataStrings.Add(dataString);
-			//print(dataString);
 		}
 	}
 	
 
 	vars.playerWeapons = new List<string>();
-	vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
+	vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
 	vars.playerWeaponsSize.Update(game);
 
 	for(int i = 0; i < vars.playerWeaponsSize.Current; i++)
 	{
 		IntPtr ptr = IntPtr.Zero;
-		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
+		var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
 		itemNameLength.Update(game);
-		new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+		new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 		var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 		vars.playerWeapons.Add(itemName);
 	}
@@ -415,9 +414,9 @@ update
 		for(int i = vars.playerArmorsSize.Old; i < vars.playerArmorsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
@@ -428,9 +427,9 @@ update
 		for(int i = vars.playerItemsSize.Old; i < vars.playerItemsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
@@ -441,9 +440,9 @@ update
 		for(int i =  vars.playerChipsSize.Old; i < vars.playerChipsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
@@ -452,103 +451,103 @@ update
 	if(vars.loadedSlot.Current != vars.loadedSlot.Old)
 	{
 		vars.dataStrings = new List<string>();
-		vars.dataStringsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x18));
+		vars.dataStringsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x18));
 		vars.playerItemsSize.Update(game);
 		
 		for(int i = 0; i < vars.dataStringsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
+			var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
 			dataStringLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
 			var dataString = memory.ReadString(ptr, 2*dataStringLength.Current);
 			vars.dataStrings.Add(dataString);
 		}
 		
 		vars.playerWeapons = new List<string>();
-		vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
+		vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
 		vars.playerWeaponsSize.Update(game);
 
 		for(int i = 0; i < vars.playerWeaponsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerWeapons.Add(itemName);
 		}
 	
 		vars.playerItems = new List<string>();
-		vars.playerArmorsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x18));
+		vars.playerArmorsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x18));
 		vars.playerArmorsSize.Update(game);
 
 		for(int i = 0; i < vars.playerArmorsSize .Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
 
-		vars.playerItemsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x18));
+		vars.playerItemsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x18));
 		vars.playerItemsSize.Update(game);
 
 		for(int i = 0; i < vars.playerItemsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
 		
-		vars.playerChipsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x18));
+		vars.playerChipsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x18));
 		vars.playerChipsSize.Update(game);
 
 		for(int i = 0; i < vars.playerChipsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
 
 		vars.playerData = new MemoryWatcherList
 		{
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF0)){Name="timeOfDayPasses"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF4)){Name="chipSlots"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF8)){Name="museumLightsOn"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF9)){Name="lavaOn"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x108)){Name="totalDeaths"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x10C)){Name="parryChallengeRecord"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF0)){Name="timeOfDayPasses"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF4)){Name="chipSlots"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF8)){Name="museumLightsOn"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF9)){Name="lavaOn"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x108)){Name="totalDeaths"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x10C)){Name="parryChallengeRecord"},
 			//0 = Medium, 1 = Easy, 2 = Hard
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x110)){Name="difficulty"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x110)){Name="difficulty"},
 			//0 = Regular, 1 = NGPlus, 2 = NGExtra
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x114)){Name="gameMode"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x114)){Name="gameMode"},
 			//0 = MainStory, 1 = Dungeon, 2 = BossRush
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x118)){Name="gameType"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11C)){Name="invencibilityAssist"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11D)){Name="staminaAssist"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11E)){Name="timeAssist"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11F)){Name="combatAssist"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x120)){Name="currentDungeonRoom"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x124)){Name="currentDungeonArea"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x128)){Name="bossRushProgress"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12C)){Name="permaDeath"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12D)){Name="equipItemsAutomatically"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x130)){Name="numberOfPerfectCatches"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x134)){Name="numberOfTreasureDig"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x138)){Name="numberOfRareTreasuresDig"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x13C)){Name="amountGivenToGrimReaper"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x140)){Name="meteorDustBought"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x144)){Name="keyBought"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x148)){Name="previousFileNumberNGPlus"}
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x118)){Name="gameType"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11C)){Name="invencibilityAssist"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11D)){Name="staminaAssist"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11E)){Name="timeAssist"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11F)){Name="combatAssist"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x120)){Name="currentDungeonRoom"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x124)){Name="currentDungeonArea"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x128)){Name="bossRushProgress"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12C)){Name="permaDeath"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12D)){Name="equipItemsAutomatically"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x130)){Name="numberOfPerfectCatches"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x134)){Name="numberOfTreasureDig"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x138)){Name="numberOfRareTreasuresDig"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x13C)){Name="amountGivenToGrimReaper"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x140)){Name="meteorDustBought"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x144)){Name="keyBought"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x148)){Name="previousFileNumberNGPlus"}
 		};
 	}
 	
@@ -563,7 +562,8 @@ isLoading
 start
 {
 	vars.loading.Update(game);
-	vars.dataStringsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x18));
+	print(vars.loadedSlot.Current + "");
+	vars.dataStringsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x18));
 	vars.dataStringsSize.Update(game);
 
 	if(vars.loading.Current == 1 && vars.dataStringsSize.Current == 0)
@@ -577,97 +577,97 @@ start
 		for(int i = 0; i < vars.dataStringsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
+			var dataStringLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x10));
 			dataStringLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x78,0x10,(0x8*i)+0x20,0x14).DerefOffsets(game, out ptr);
 			var dataString = memory.ReadString(ptr, 2*dataStringLength.Current);
 			vars.dataStrings.Add(dataString);
 		}
 		
 		vars.playerWeapons = new List<string>();
-		vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
+		vars.playerWeaponsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x18));
 		vars.playerWeaponsSize.Update(game);
 
 		for(int i = 0; i < vars.playerWeaponsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x28,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerWeapons.Add(itemName);
 		}
 	
 		vars.playerItems = new List<string>();
-		vars.playerArmorsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x18));
+		vars.playerArmorsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x18));
 		vars.playerArmorsSize.Update(game);
 
 		for(int i = 0; i < vars.playerArmorsSize .Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x30,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
 
-		vars.playerItemsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x18));
+		vars.playerItemsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x18));
 		vars.playerItemsSize.Update(game);
 
 		for(int i = 0; i < vars.playerItemsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x38,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
 		
-		vars.playerChipsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x18));
+		vars.playerChipsSize = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x18));
 		vars.playerChipsSize.Update(game);
 
 		for(int i = 0; i < vars.playerChipsSize.Current; i++)
 		{
 			IntPtr ptr = IntPtr.Zero;
-			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
+			var itemNameLength = new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x10));
 			itemNameLength.Update(game);
-			new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
+			new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x50,0x10,(0x8*i)+0x20,0x10,0x14).DerefOffsets(game, out ptr);
 			var itemName = memory.ReadString(ptr, 2*itemNameLength.Current);
 			vars.playerItems.Add(itemName);
 		}
 
 		vars.playerData = new MemoryWatcherList
 		{
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF0)){Name="timeOfDayPasses"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF4)){Name="chipSlots"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF8)){Name="museumLightsOn"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF9)){Name="lavaOn"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x108)){Name="totalDeaths"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x10C)){Name="parryChallengeRecord"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF0)){Name="timeOfDayPasses"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF4)){Name="chipSlots"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF8)){Name="museumLightsOn"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0xF9)){Name="lavaOn"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x108)){Name="totalDeaths"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x10C)){Name="parryChallengeRecord"},
 			//0 = Medium, 1 = Easy, 2 = Hard
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x110)){Name="difficulty"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x110)){Name="difficulty"},
 			//0 = Regular, 1 = NGPlus, 2 = NGExtra
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x114)){Name="gameMode"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x114)){Name="gameMode"},
 			//0 = MainStory, 1 = Dungeon, 2 = BossRush
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x118)){Name="gameType"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11C)){Name="invencibilityAssist"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11D)){Name="staminaAssist"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11E)){Name="timeAssist"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11F)){Name="combatAssist"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x120)){Name="currentDungeonRoom"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x124)){Name="currentDungeonArea"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x128)){Name="bossRushProgress"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12C)){Name="permaDeath"},
-			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12D)){Name="equipItemsAutomatically"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x130)){Name="numberOfPerfectCatches"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x134)){Name="numberOfTreasureDig"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x138)){Name="numberOfRareTreasuresDig"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x13C)){Name="amountGivenToGrimReaper"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x140)){Name="meteorDustBought"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x144)){Name="keyBought"},
-			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00494C70,0x510,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x148)){Name="previousFileNumberNGPlus"}
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x118)){Name="gameType"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11C)){Name="invencibilityAssist"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11D)){Name="staminaAssist"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11E)){Name="timeAssist"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x11F)){Name="combatAssist"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x120)){Name="currentDungeonRoom"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x124)){Name="currentDungeonArea"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x128)){Name="bossRushProgress"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12C)){Name="permaDeath"},
+			new MemoryWatcher<bool>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x12D)){Name="equipItemsAutomatically"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x130)){Name="numberOfPerfectCatches"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x134)){Name="numberOfTreasureDig"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x138)){Name="numberOfRareTreasuresDig"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x13C)){Name="amountGivenToGrimReaper"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x140)){Name="meteorDustBought"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x144)){Name="keyBought"},
+			new MemoryWatcher<int>(new DeepPointer("mono-2.0-bdwgc.dll", 0x00492DE8,0x70,0x0,0xC0,0x230,0x18,0x20,0x10,(8*vars.loadedSlot.Current)+32,0x148)){Name="previousFileNumberNGPlus"}
 		};
 
 		vars.saveStarted = false;
